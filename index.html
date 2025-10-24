@@ -6,21 +6,20 @@
   <title>Supplement Facts Label Generator — Pro</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f4f6fb;min-height:100vh;padding:20px}
     .container{max-width:1400px;margin:0 auto}
-    header{text-align:center;color:#fff;margin-bottom:30px}
-    header h1{font-size:2.2rem;margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,.2)}
-    header p{opacity:.95}
-    .main{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    header{text-align:center;color:#222;margin-bottom:20px}
+    header h1{font-size:1.9rem;margin-bottom:6px}
+    .main{display:grid;grid-template-columns:1fr 1fr;gap:22px}
     @media (max-width: 968px){.main{grid-template-columns:1fr}}
-    .panel{background:#fff;border-radius:14px;padding:24px;box-shadow:0 20px 40px rgba(0,0,0,.08)}
-    .panel h2{font-size:1.25rem;margin-bottom:12px;border-bottom:2px solid #667eea;padding-bottom:8px;color:#333}
-    .panel h3{font-size:1.05rem;margin:18px 0 10px;color:#555}
+    .panel{background:#fff;border-radius:12px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.06)}
+    .panel h2{font-size:1.15rem;margin-bottom:10px;border-bottom:2px solid #e8eaf6;padding-bottom:6px;color:#333}
+    .panel h3{font-size:1rem;margin:14px 0 8px;color:#555}
     label{display:block;font-weight:600;margin-bottom:6px;color:#555}
-    input[type=text],input[type=number],select,textarea{width:100%;padding:10px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:1rem}
+    input[type=text],input[type=number],select,textarea{width:100%;padding:9px 11px;border:2px solid #e0e0e0;border-radius:8px;font-size:1rem}
     textarea{min-height:72px;resize:vertical}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn{background:#556cd6;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
     .btn.secondary{background:#f5f5f5;color:#333}
     .btn.small{padding:8px 12px;font-size:.9rem}
     .btn.danger{background:#ff4757}
@@ -29,8 +28,8 @@
     .item .name{font-weight:700;color:#333}
     .item .meta{font-size:.9rem;color:#666}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
-    .chip{border:2px solid #667eea;background:#fff;color:#667eea;padding:8px;border-radius:8px;font-weight:700;text-align:center;cursor:pointer}
-    .chip:hover{background:#667eea;color:#fff}
+    .chip{border:2px solid #556cd6;background:#fff;color:#556cd6;padding:8px;border-radius:8px;font-weight:700;text-align:center;cursor:pointer}
+    .chip:hover{background:#556cd6;color:#fff}
     .tips{background:#e3f2fd;padding:10px;border-radius:8px;color:#1976d2;font-size:.95rem;margin:10px 0}
     /* Label */
     .label-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -47,15 +46,16 @@
     .supplement-label .blend-i{font-size:12px;line-height:1.3;margin-top:2px}
     .supplement-label .foot{margin-top:8px;padding-top:8px;font-size:12px;line-height:1.3}
     .supplement-label .other{margin-top:10px;padding-top:10px;border-top:2px solid #000;font-size:13px;line-height:1.4}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:flex-end}
     .mm-note{font-size:.95rem;color:#333;background:#fff;border:1px dashed #999;padding:8px 10px;border-radius:8px}
+    .sizer-grid{display:grid;grid-template-columns:repeat(6, minmax(90px,1fr));gap:8px;width:100%}
     @media print{
       body{background:#fff}
       .hide-print{display:none}
       .supplement-label{-webkit-print-color-adjust:exact;print-color-adjust:exact;border:3px solid #000 !important}
     }
   </style>
-  <!-- Export libs (loaded from CDN when used in browser) -->
+  <!-- Export libs (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
@@ -85,7 +85,7 @@
           <button class="chip" onclick="loadTemplate('probiotic')">Probiotic Complex</button>
           <button class="chip" onclick="loadTemplate('nad')">NAD+ Supplement</button>
           <button class="chip" onclick="loadTemplate('multivitamin')">Multivitamin</button>
-          <button class="chip" onclick="loadTemplate('omega3')">Omega‑3</button>
+          <button class="chip" onclick="loadTemplate('omega3')">Omega-3</button>
         </div>
 
         <h2>Add Ingredients</h2>
@@ -143,7 +143,7 @@
           <button class="chip" onclick="quickAdd('Vitamin C',500,'mg','100')">Vitamin C</button>
           <button class="chip" onclick="quickAdd('Vitamin D',25,'mcg','125')">Vitamin D</button>
           <button class="chip" onclick="quickAdd('Zinc',15,'mg','136')">Zinc</button>
-          <button class="chip" onclick="quickAdd('Omega‑3',1000,'mg','†')">Omega‑3</button>
+          <button class="chip" onclick="quickAdd('Omega-3',1000,'mg','†')">Omega-3</button>
           <button class="chip" onclick="quickAdd('Probiotics',10,'billion CFU','†')">Probiotics</button>
           <button class="chip" onclick="quickAdd('CoQ10',100,'mg','†')">CoQ10</button>
         </div>
@@ -160,18 +160,18 @@
           <textarea id="additionalFootnotes" placeholder="† Daily Value (DV) not established." rows="2"></textarea>
         </div>
 
-        <div class="actions hide-print" style="margin-top:16px">
-          <div style="display:grid;grid-template-columns:repeat(6, minmax(90px,1fr));gap:8px;width:100%">
+        <div class="actions hide-print" style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+          <div class="sizer-grid">
             <div>
-              <label style="font-weight:600;margin-bottom:6px;color:#555;display:block">Width</label>
+              <label>Width</label>
               <input id="outW" type="number" step="0.01" placeholder="e.g., 140">
             </div>
             <div>
-              <label style="font-weight:600;margin-bottom:6px;color:#555;display:block">Height</label>
+              <label>Height</label>
               <input id="outH" type="number" step="0.01" placeholder="e.g., 60">
             </div>
             <div>
-              <label style="font-weight:600;margin-bottom:6px;color:#555;display:block">Units</label>
+              <label>Units</label>
               <select id="outUnit">
                 <option value="mm">mm</option>
                 <option value="px">px</option>
@@ -179,7 +179,7 @@
               </select>
             </div>
             <div>
-              <label style="font-weight:600;margin-bottom:6px;color:#555;display:block">DPI (PNG/JPG)</label>
+              <label>DPI (PNG/JPG)</label>
               <input id="outDPI" type="number" step="1" value="300">
             </div>
             <div style="display:flex;align-items:flex-end">
@@ -191,13 +191,16 @@
               <button class="btn small secondary" onclick="fillFromCurrent()">Use current mm</button>
             </div>
           </div>
-          <button class="btn" onclick="window.print()">🖨️ Print</button>
-          <button class="btn" onclick="downloadImage('png')">⬇️ PNG</button>
-          <button class="btn" onclick="downloadImage('jpg')">⬇️ JPG</button>
-          <button class="btn" onclick="downloadPDF()">⬇️ PDF</button>
-          <button class="btn secondary" onclick="copyHTML()">📋 Copy HTML</button>
-          <button class="btn secondary" onclick="exportData()">📊 Export JSON</button>
-          <button class="btn secondary" onclick="clearAll()">Clear</button>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn" onclick="window.print()">🖨️ Print</button>
+            <button class="btn" onclick="downloadImage('png')">⬇️ PNG</button>
+            <button class="btn" onclick="downloadImage('jpg')">⬇️ JPG</button>
+            <button class="btn" onclick="downloadPDF()">⬇️ PDF</button>
+            <button class="btn secondary" onclick="copyHTML()">📋 Copy HTML</button>
+            <button class="btn secondary" onclick="exportData()">📊 Export JSON</button>
+            <button class="btn secondary" onclick="clearAll()">Clear</button>
+          </div>
         </div>
       </div>
 
@@ -246,7 +249,6 @@
       if(!v) return '†';
       if(v === '**' || v.toLowerCase()==='na') return '†';
       if(v === '†') return '†';
-      // numeric?
       const n = Number(v);
       return isFinite(n) && n>=0 ? String(n) : '†';
     }
@@ -341,7 +343,6 @@
 
       const container = document.getElementById('ingredientRows');
       container.innerHTML = html || '<p style="text-align:center;padding:20px;color:#999;border-bottom:1px solid #000">Add ingredients to see them here</p>';
-      // update mm info
       requestAnimationFrame(updateMmInfo);
     }
 
@@ -407,6 +408,15 @@
       navigator.clipboard.writeText(html).then(()=>alert('Label HTML copied!')).catch(()=>alert('Copy failed—select and copy manually.'));
     }
 
+    async function toCanvas(){
+      if(typeof html2canvas === 'undefined'){
+        alert('html2canvas not loaded. PNG/JPG/PDF exports require the CDN. Try hard-refresh or disable blockers.');
+        throw new Error('html2canvas missing');
+      }
+      const el=document.getElementById('labelPreview');
+      return await html2canvas(el,{scale:3,backgroundColor:'#ffffff'});
+    }
+
     function unitToPx(val, unit, dpi){
       if(!val || val<=0) return 0;
       if(unit==='px') return val;
@@ -432,12 +442,10 @@
         }else if(H>0 && (!W || W<=0)){
           W = H * ar;
         }else if(W>0 && H>0){
-          // override height to maintain AR from width
           H = W / ar;
         }
       }
       if((!W || W<=0) && (!H || H<=0)){
-        // fallback to capture size
         W = canvasW; H = canvasH;
       }else if(!W || W<=0){
         W = H*ar;
@@ -457,19 +465,12 @@
       document.getElementById('outUnit').value = 'mm';
     }
 
-    async function toCanvas(){
-      const el=document.getElementById('labelPreview');
-      return await html2canvas(el,{scale:3,backgroundColor:'#ffffff'});
-    }
-
     async function downloadImage(type){
       const srcCanvas = await toCanvas();
-      // source canvas corresponds to scale=3 of DOM size, so get its pixel dims:
       const srcW = srcCanvas.width, srcH = srcCanvas.height;
       const target = getTargetPixels(srcW, srcH);
       const {W, H} = target;
 
-      // draw into a new canvas with requested size
       const out = document.createElement('canvas');
       out.width = W; out.height = H;
       const ctx = out.getContext('2d');
@@ -482,19 +483,16 @@
       const a=document.createElement('a');
       a.href=data; a.download=`supplement-label.${type}`; a.click();
     }
-      const canvas=await toCanvas();
-      const mime = type==='jpg' ? 'image/jpeg' : 'image/png';
-      const data = canvas.toDataURL(mime, 1.0);
-      const a=document.createElement('a');
-      a.href=data; a.download=`supplement-label.${type}`; a.click();
-    }
 
     async function downloadPDF(){
       const srcCanvas = await toCanvas();
       const srcW = srcCanvas.width, srcH = srcCanvas.height;
-      const { jsPDF } = window.jspdf;
+      const { jsPDF } = window.jspdf || {};
+      if(!jsPDF){
+        alert('jsPDF not loaded. PDF export requires the CDN. Try hard-refresh or disable blockers.');
+        throw new Error('jsPDF missing');
+      }
 
-      // Determine requested physical size in mm
       const wVal = parseFloat(document.getElementById('outW').value);
       const hVal = parseFloat(document.getElementById('outH').value);
       const unit = document.getElementById('outUnit').value || 'mm';
@@ -502,7 +500,6 @@
       const keep = document.getElementById('keepAR').checked;
 
       const ar = srcW/srcH;
-      // Convert requested size to mm
       function toMm(val){
         if(!val || val<=0) return 0;
         if(unit==='mm') return val;
@@ -522,8 +519,7 @@
         }
       }
       if((!wmm || wmm<=0) && (!hmm || hmm<=0)){
-        // fallback to captured physical size at 96dpi
-        wmm = (srcW/96)*25.4/3; // divide by 3 because scale=3 capture
+        wmm = (srcW/96)*25.4/3; // scale=3 capture
         hmm = (srcH/96)*25.4/3;
       }else if(!wmm || wmm<=0){
         wmm = hmm*ar;
@@ -531,7 +527,6 @@
         hmm = wmm/ar;
       }
 
-      // Create PDF (A4) and fit content; if larger than page, scale down preserving mm ratio
       const pdf = new jsPDF({orientation: (wmm>hmm?'landscape':'portrait'), unit:'mm', format:'a4'});
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
@@ -542,8 +537,7 @@
       drawW *= scale; drawH *= scale;
       const x = (pageW - drawW)/2, y=(pageH - drawH)/2;
 
-      // If the requested mm is different from captured pixels, we should resample to match aspect
-      // Build a resampled canvas to keep sharpness for print
+      // resample for sharp print
       const targetPxW = Math.max(1, Math.round((drawW/25.4) * dpi));
       const targetPxH = Math.max(1, Math.round((drawH/25.4) * dpi));
       const resampled = document.createElement('canvas');
@@ -557,29 +551,35 @@
       pdf.addImage(imgData, 'PNG', x, y, drawW, drawH);
       pdf.save('supplement-label.pdf');
     }
-      const canvas=await toCanvas();
-      const imgData=canvas.toDataURL('imagePNG');
-      const { jsPDF } = window.jspdf;
-      const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-      const pageW=pdf.internal.pageSize.getWidth();
-      const pageH=pdf.internal.pageSize.getHeight();
-      // image size in mm
-      const wmm=pxToMm(canvas.width/3); // because scale=3
-      const hmm=pxToMm(canvas.height/3);
-      // Fit to page with margins
-      const margin=10;
-      const maxW=pageW-2*margin, maxH=pageH-2*margin;
-      let w=wmm, h=hmm;
-      const ratio=Math.min(maxW/wmm, maxH/hmm, 1);
-      w=wmm*ratio; h=hmm*ratio;
-      const x=(pageW-w)/2, y=(pageH-h)/2;
-      pdf.addImage(imgData,'PNG',x,y,w,h);
-      pdf.save('supplement-label.pdf');
-    }
 
-    // init
-    updateLabel();
-    updateMmInfo();
+    // Live input binding + CDN check
+    function bindLiveInputs(){
+      const ids = ['servingSize','servingsPerContainer','otherIngredients','additionalFootnotes'];
+      ids.forEach(id=>{
+        const el = document.getElementById(id);
+        if(el){
+          el.addEventListener('input', updateLabel);
+          el.addEventListener('change', updateLabel);
+        }
+      });
+    }
+    function checkCDNs(){
+      const ok1 = typeof html2canvas !== 'undefined';
+      const ok2 = window.jspdf && typeof window.jspdf.jsPDF === 'function';
+      if(!ok1 || !ok2){
+        const msg = [
+          !ok1 ? '• html2canvas failed to load (PNG/JPG export disabled)' : '',
+          !ok2 ? '• jsPDF failed to load (PDF export disabled)' : ''
+        ].filter(Boolean).join('\\n');
+        alert('Some exporter libraries did not load from CDN.\\n' + msg + '\\n\\nTry a hard refresh (Ctrl/Cmd+Shift+R). If you use an ad/script blocker, allow jsDelivr.');
+      }
+    }
+    document.addEventListener('DOMContentLoaded', ()=>{
+      bindLiveInputs();
+      updateLabel();
+      updateMmInfo();
+      checkCDNs();
+    });
   </script>
 </body>
 </html>
